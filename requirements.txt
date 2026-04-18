@@ -1,0 +1,7 @@
+timm
+mlflow
+kagglehub
+opencv-python
+torchinfo
+grad-cam
+ipykernel
