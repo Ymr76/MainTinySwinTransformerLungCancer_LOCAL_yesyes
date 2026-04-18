@@ -1,0 +1,16 @@
+# Environments
+venv/
+pip_cache/
+
+# Data and Logs
+dataset_cache/
+mlruns/
+*.whl
+
+# Security
+.kaggle/
+
+# Python cache / System files
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
