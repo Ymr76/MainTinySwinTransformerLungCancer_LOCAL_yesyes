@@ -1,0 +1,21 @@
+stages:
+  data_preparation:
+    cmd: echo "Downloading & Extracting Dataset..."
+    outs:
+      - dataset_cache/
+  eda_and_clahe:
+    cmd: echo "Applying CLAHE Contrast Enhancement..."
+    deps:
+      - dataset_cache/
+    outs:
+      - clahe_images/
+  train_swin_transformer:
+    cmd: echo "Training Tiny Swin Transformer..."
+    deps:
+      - clahe_images/
+    outs:
+      - mlruns/
+  gradcam_visualization:
+    cmd: echo "Generating Heatmaps..."
+    deps:
+      - mlruns/

@@ -1,0 +1,10 @@
+strict digraph {
+"data_preparation";
+"eda_and_clahe";
+"train_swin_transformer";
+"gradcam_visualization";
+"data_preparation" -> "eda_and_clahe";
+"eda_and_clahe" -> "train_swin_transformer";
+"train_swin_transformer" -> "gradcam_visualization";
+}
+
