@@ -6,3 +6,4 @@ torchinfo
 grad-cam
 ipykernel
 dvc
+streamlit
