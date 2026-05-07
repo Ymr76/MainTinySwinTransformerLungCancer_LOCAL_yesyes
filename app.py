@@ -154,12 +154,25 @@ if uploaded_file is not None and model is not None:
             st.subheader(f"Prediction: {predicted_class}")
             st.write(f"**Confidence:** {conf_score:.2f}%")
             if 'malignant' in predicted_class.lower():
-                st.error("Alert: Potential Malignancy Detected.")
+                st.error("⚠️ Alert: Potential Malignancy Detected.")
             elif 'bengin' in predicted_class.lower() or 'benign' in predicted_class.lower():
-                st.warning("Benign case detected.")
+                st.warning("🟡 Benign case detected.")
             else:
-                st.success("Normal case detected.")
-                
+                st.success("✅ Normal case detected.")
+
+            # --- Probability Distribution for all 3 real classes ---
+            st.markdown("**Class Probabilities:**")
+            probs_np = probs.cpu().numpy()[0]
+            display_classes = ['Bengin cases', 'Malignant cases', 'Normal cases']
+            for i, cls in enumerate(display_classes):
+                st.progress(float(probs_np[i]), text=f"{cls}: {probs_np[i]*100:.1f}%")
+
+            st.caption(
+                "⚠️ **Model Bias Warning:** Trained on imbalanced data "
+                "(Malignant ~1190 imgs vs Normal ~55 imgs) for only 5 epochs. "
+                "The model tends to over-predict Malignant. Consult a radiologist."
+            )
+
             st.image(visualization, caption="Heatmap & ROI (Red Box)", use_container_width=True)
 
     except Exception as e:
