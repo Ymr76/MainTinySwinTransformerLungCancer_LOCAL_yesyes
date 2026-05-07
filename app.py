@@ -18,8 +18,13 @@ st.markdown("Upload a lung scan to classify it and visualize the region of inter
 
 # --- Constants & Classes ---
 NUM_CLASSES = 4
-# Note: classes are exactly as loaded from dataset during training
-class_names = ['Bengin cases', 'Malignant cases', 'Normal cases', 'Unknown (Not in dataset)']
+# IMPORTANT: These must match the exact order from training.
+# During training, os.listdir() returned 4 items (alphabetically):
+# 0: 'Bengin cases'
+# 1: 'IQ-OTH_NCCD lung cancer dataset.txt'  <-- the txt file in the dataset folder!
+# 2: 'Malignant cases'
+# 3: 'Normal cases'
+class_names = ['Bengin cases', 'IQ-OTH_NCCD lung cancer dataset.txt (artifact)', 'Malignant cases', 'Normal cases']
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class ApplyCLAHE(object):
